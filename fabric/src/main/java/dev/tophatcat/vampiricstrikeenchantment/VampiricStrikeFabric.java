@@ -20,19 +20,21 @@
  */
 package dev.tophatcat.vampiricstrikeenchantment;
 
+import com.mojang.serialization.MapCodec;
 import dev.tophatcat.vampiricstrikeenchantment.common.enchantments.custom.VampiricStrikeEffect;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 
 public class VampiricStrikeFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
         VampiricStrikeCommon.init();
-        Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
-            ResourceLocation.fromNamespaceAndPath(VampiricStrikeCommon.MOD_ID,
-                "vampiric_strike"), VampiricStrikeEffect.CODEC);
+        MapCodec<? extends EnchantmentEntityEffect> VAMPIRIC_STRIKE
+            = Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE, ResourceLocation.fromNamespaceAndPath(
+            VampiricStrikeCommon.MOD_ID, "vampiric_strike"), VampiricStrikeEffect.CODEC);
     }
 }

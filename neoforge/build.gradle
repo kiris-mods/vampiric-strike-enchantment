@@ -44,6 +44,7 @@ neoForge {
 
 dependencies {
     // Dependencies we require for this mod to run as we expect it to.
+    implementation "com.teamresourceful.resourcefulconfig:resourcefulconfig-neoforge-1.21:${resourceful_config_neoforge_version}"
     // Optional
     implementation "maven.modrinth:jade:${jade_neoforge_version}+neoforge"
 }

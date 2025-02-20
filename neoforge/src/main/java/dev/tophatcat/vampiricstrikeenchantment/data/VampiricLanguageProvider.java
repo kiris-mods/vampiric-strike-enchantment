@@ -21,18 +21,23 @@
 package dev.tophatcat.vampiricstrikeenchantment.data;
 
 import dev.tophatcat.vampiricstrikeenchantment.VampiricStrikeCommon;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
+public class VampiricLanguageProvider extends LanguageProvider {
 
-public class VampiricDataGenerator extends DatapackBuiltinEntriesProvider {
+    public VampiricLanguageProvider(PackOutput output) {
+        super(output, VampiricStrikeCommon.MOD_ID, "en_us");
+    }
 
-    public VampiricDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries,
-                                 RegistrySetBuilder builder) {
-        super(output, registries, builder, Set.of(VampiricStrikeCommon.MOD_ID));
+    @Override
+    protected void addTranslations() {
+        add("enchantment.vampiricstrikeenchantment.vampiric_strike", "Vampiric Strike");
+        add("enchantment.vampiricstrikeenchantment.vampiric_strike.desc",
+            "Strike like a vampire and leach some of your foes health with every hit.");
+        add("config.vampiricstrikeenchantment.level_one_heal_value", "Level 1 Enchantment heal amount.");
+        add("config.vampiricstrikeenchantment.level_two_heal_value", "Level 2 Enchantment heal amount.");
+        add("config.vampiricstrikeenchantment.level_three_heal_value", "Level 3 Enchantment heal amount.");
+        add("config.vampiricstrikeenchantment.level_four_heal_value", "Level 4 Enchantment heal amount.");
     }
 }

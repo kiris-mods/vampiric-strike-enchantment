@@ -20,6 +20,7 @@
  */
 package dev.tophatcat.vampiricstrikeenchantment;
 
+import com.teamresourceful.resourcefulconfig.api.loader.Configurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,8 +29,10 @@ public class VampiricStrikeCommon {
     public static final String MOD_ID = "vampiricstrikeenchantment";
     public static final String MOD_NAME = "Vampiric Strike Enchantment";
     public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
+    public static final Configurator CONFIGURATOR = new Configurator(MOD_ID);
 
     public static void init() {
         LOG.info("Starting up " + MOD_NAME + "...");
+        CONFIGURATOR.register(VampiricStrikeConfig.class);
     }
 }

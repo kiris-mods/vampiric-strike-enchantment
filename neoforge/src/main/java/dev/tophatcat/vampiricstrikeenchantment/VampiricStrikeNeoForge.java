@@ -21,8 +21,10 @@
 package dev.tophatcat.vampiricstrikeenchantment;
 
 import com.mojang.serialization.MapCodec;
+import dev.tophatcat.vampiricstrikeenchantment.common.enchantments.VampiricEnchantments;
 import dev.tophatcat.vampiricstrikeenchantment.common.enchantments.custom.VampiricStrikeEffect;
 import dev.tophatcat.vampiricstrikeenchantment.data.VampiricDataGenerator;
+import dev.tophatcat.vampiricstrikeenchantment.data.VampiricLanguageProvider;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
@@ -36,26 +38,26 @@ import java.util.function.Supplier;
 @Mod(VampiricStrikeCommon.MOD_ID)
 public class VampiricStrikeNeoForge {
 
-    public static final DeferredRegister<MapCodec<? extends EnchantmentEntityEffect>> ENTITY_ENCHANTMENT_EFFECTS
-        = DeferredRegister.create(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, VampiricStrikeCommon.MOD_ID);
-
-    private static final Supplier<MapCodec<? extends EnchantmentEntityEffect>> VAMPIRIC_STRIKE
-        = ENTITY_ENCHANTMENT_EFFECTS.register("vampiric_strike", () -> VampiricStrikeEffect.CODEC);
-
     public VampiricStrikeNeoForge(IEventBus bus) {
         VampiricStrikeCommon.init();
+        DeferredRegister<MapCodec<? extends EnchantmentEntityEffect>> ENTITY_ENCHANTMENT_EFFECTS
+            = DeferredRegister.create(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, VampiricStrikeCommon.MOD_ID);
+        Supplier<MapCodec<? extends EnchantmentEntityEffect>> VAMPIRIC_STRIKE
+            = ENTITY_ENCHANTMENT_EFFECTS.register("vampiric_strike", () -> VampiricStrikeEffect.CODEC);
         ENTITY_ENCHANTMENT_EFFECTS.register(bus);
         bus.addListener(this::gatherData);
     }
 
     public void gatherData(GatherDataEvent event) {
         RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(Registries.ENCHANTMENT, VampiricDataGenerator::bootstrap);
+            .add(Registries.ENCHANTMENT, VampiricEnchantments::bootstrap);
         var generator = event.getGenerator();
+        boolean includeClient = event.includeClient();
         boolean includeServer = event.includeServer();
         var packOutput = event.getGenerator().getPackOutput();
         var lookupProvider = event.getLookupProvider();
 
+        generator.addProvider(includeClient, new VampiricLanguageProvider(packOutput));
         generator.addProvider(includeServer, new VampiricDataGenerator(packOutput, lookupProvider, BUILDER));
     }
 }

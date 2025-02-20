@@ -1,0 +1,8 @@
+{
+  "config.vampiricstrikeenchantment.level_four_heal_value": "Level 4 Enchantment heal amount.",
+  "config.vampiricstrikeenchantment.level_one_heal_value": "Level 1 Enchantment heal amount.",
+  "config.vampiricstrikeenchantment.level_three_heal_value": "Level 3 Enchantment heal amount.",
+  "config.vampiricstrikeenchantment.level_two_heal_value": "Level 2 Enchantment heal amount.",
+  "enchantment.vampiricstrikeenchantment.vampiric_strike": "Vampiric Strike",
+  "enchantment.vampiricstrikeenchantment.vampiric_strike.desc": "Strike like a vampire and leach some of your foes health with every hit."
+}

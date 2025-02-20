@@ -2,6 +2,7 @@ modLoader = "javafml" #mandatory
 loaderVersion = "[1,)" #mandatory
 license = "${license_url}" # Review your options at https://choosealicense.com/.
 issueTrackerURL = "${mod_source}/issues" #optional
+sourcesURL = "${mod_source}" #optional
 
 [[mods]] #mandatory
 modId = "${mod_id}" #mandatory
@@ -13,28 +14,26 @@ credits = "${credits}" #optional
 authors = "${author}" #optional
 description = '''${description}''' #mandatory (Supports multiline text)
 
-[[dependencies.${mod_id}]] #optional
-modId = "neoforge" #mandatory
-type = "required"
-versionRange = "${neoforge_version_range}" #mandatory
-ordering = "NONE" # The order that this dependency should load in relation to your mod, required to be either 'BEFORE' or 'AFTER' if the dependency is not mandatory
-side = "BOTH" # Side this dependency is applied on - 'BOTH', 'CLIENT' or 'SERVER'
+# https://docs.neoforged.net/docs/gettingstarted/modfiles#dependency-configurations
+[dependencies]
+"${mod_id}" = [
+  { modId = "neoforge", type = "required", versionRange = "${neoforge_version_range}", ordering = "NONE", side = "BOTH", mc-publish = { ignore = true } },
+  { modId = "minecraft", type = "required", versionRange = "${minecraft_version_range}", ordering = "NONE", side = "BOTH" },
+  { modId = "resourcefulconfig", type = "required", versionRange = "[${resourceful_config_neoforge_version},)", ordering = "NONE", side = "BOTH" }
+]
 
-[[dependencies.${mod_id}]]
-modId = "minecraft"
-type = "required"
-versionRange = "${minecraft_version_range}"
-ordering = "NONE"
-side = "BOTH"
+# Features are specific properties of the game environment, that you may want to declare you require. This example declares
+# that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
+# stop your mod loading on the server for example.
+[features.${ mod_id }]
+#openGLVersion="[3.2,)"
+javaVersion = "[${java_version},)"
 
 [mc-publish]
 curseforge = "curseforge_id"
 modrinth = "modrinth_id"
 loaders = ["neoforge"]
 
-# Features are specific properties of the game environment, that you may want to declare you require. This example declares
-# that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
-# stop your mod loading on the server for example.
-#[features.${mod_id}]
-#openGLVersion="[3.2,)"
-
+dependencies = [
+  "resourcefulconfig(required){modrinth:M1953qlQ}{curseforge:714059}"
+]

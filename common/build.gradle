@@ -19,6 +19,7 @@ dependencies {
     annotationProcessor group: "io.github.llamalad7", name: "mixinextras-common", version: "0.3.5"
 
     // Dependencies we use for this mod to run as we expect it to.
+    implementation "com.teamresourceful.resourcefulconfig:resourcefulconfig-common-1.21:${resourceful_config_common_version}"
 }
 
 sourceSets.main.resources {

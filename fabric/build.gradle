@@ -13,6 +13,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}+${minecraft_version}"
 
     // Dependencies we use for this mod to run as we expect it to.
+    modImplementation "com.teamresourceful.resourcefulconfig:resourcefulconfig-fabric-1.21:${resourceful_config_fabric_version}"
     // Optional
     modImplementation "maven.modrinth:jade:${jade_fabric_version}+fabric"
     modImplementation "com.terraformersmc:modmenu:${modmenu_version}"

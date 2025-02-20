@@ -21,28 +21,38 @@
 package dev.tophatcat.vampiricstrikeenchantment.common.enchantments.custom;
 
 import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.tophatcat.vampiricstrikeenchantment.VampiricStrikeConfig;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantedItemInUse;
-import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public record VampiricStrikeEffect(LevelBasedValue healAmount) implements EnchantmentEntityEffect {
+public record VampiricStrikeEffect() implements EnchantmentEntityEffect {
 
-    public static final MapCodec<VampiricStrikeEffect> CODEC = RecordCodecBuilder.mapCodec(
-        healingEffectInstance -> healingEffectInstance.group(
-            LevelBasedValue.CODEC.fieldOf("healAmount").forGetter(VampiricStrikeEffect::healAmount))
-            .apply(healingEffectInstance, VampiricStrikeEffect::new));
+    public static final MapCodec<VampiricStrikeEffect> CODEC
+        = MapCodec.unit(VampiricStrikeEffect::new);
 
     @Override
     public void apply(@NotNull ServerLevel level, int enchantmentLevel, @NotNull EnchantedItemInUse context,
-                      @NotNull Entity user, @NotNull Vec3 pos) {
-        if (user instanceof LivingEntity player) {
-            player.heal(healAmount().calculate(enchantmentLevel));
+                      @NotNull Entity entity, @NotNull Vec3 pos) {
+        if (entity instanceof LivingEntity player) {
+            switch (enchantmentLevel) {
+                case 1:
+                    player.heal(VampiricStrikeConfig.levelOneEnchantmentHealValue);
+                    break;
+                case 2:
+                    player.heal(VampiricStrikeConfig.levelTwoEnchantmentHealValue);
+                    break;
+                case 3:
+                    player.heal(VampiricStrikeConfig.levelThreeEnchantmentHealValue);
+                    break;
+                case 4:
+                    player.heal(VampiricStrikeConfig.levelFourEnchantmentHealValue);
+                    break;
+            }
         }
     }
 
