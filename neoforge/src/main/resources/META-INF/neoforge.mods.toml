@@ -30,8 +30,8 @@ description = '''${description}''' #mandatory (Supports multiline text)
 javaVersion = "[${java_version},)"
 
 [mc-publish]
-curseforge = "curseforge_id"
-modrinth = "modrinth_id"
+curseforge = "${curseforge_id}"
+modrinth = "${modrinth_id}"
 loaders = ["neoforge"]
 
 dependencies = [
