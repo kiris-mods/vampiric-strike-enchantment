@@ -84,7 +84,7 @@ jobs:
         uses: myConsciousness/bluesky-post@v5
         with:
           text: "It's update time! :D
-An update has been released for Mysterious Biomes via [CurseForge](https://www.curseforge.com/minecraft/mc-mods/mysterious-biomes) and [Modrinth](https://modrinth.com/mod/mysterious-biomes)! [Check out my other mods here!](https://tophatcat.dev)"
+An update has been released for Vampiric Strike Enchantment via [CurseForge](https://www.curseforge.com/minecraft/mc-mods/vampiric-strike-enchantment) and [Modrinth](https://modrinth.com/mod/vampiric-strike-enchantment)! [Check out my other mods here!](https://tophatcat.dev)"
           tags: "modding,minecraft,mods"
           retry-count: 5
           identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
@@ -97,4 +97,4 @@ An update has been released for Mysterious Biomes via [CurseForge](https://www.c
           webhook-url: ${{ secrets.ANNOUNCEMENT_WEBHOOK_URL }}
           curseforge-project-id: ${{ steps.publish_fabric.outputs.curseforge-id }}
           modrinth-project-id: ${{ steps.publish_fabric.outputs.modrinth-id }}
-          thumbnail-url: https://raw.githubusercontent.com/kiris-mods/mysterious-biomes/refs/heads/dev/common/src/main/resources/logo.png
+          thumbnail-url: https://raw.githubusercontent.com/kiris-mods/vampiric-strike-enchantment/refs/heads/dev/common/src/main/resources/logo.png
