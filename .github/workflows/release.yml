@@ -57,6 +57,7 @@ jobs:
           files: |
             **/build/libs/!(*-@(dev|sources|javadoc|slim)).jar
             **/build/libs/*-@(sources|javadoc).jar
+            !buildSrc/**
 
       - name: Publish (NeoForge)
         id: publish_neoforge

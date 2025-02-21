@@ -42,6 +42,7 @@ jobs:
           path: |
             common/build/libs/*.jar
             !common/build/libs/*-dev.jar
+            !buildSrc/**
 
       - name: Upload build artifacts (NeoForge)
         continue-on-error: true
